@@ -1,14 +1,13 @@
-package com.douglasmaziero.hamburgueriaz;
+package com.douglasmaziero.hamburgueriaz.ui;
 
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-public class MainActivity2 extends AppCompatActivity {
+import com.douglasmaziero.hamburgueriaz.R;
+
+public class FinalizarPedidoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

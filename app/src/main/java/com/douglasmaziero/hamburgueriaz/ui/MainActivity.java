@@ -1,4 +1,4 @@
-package com.douglasmaziero.hamburgueriaz;
+package com.douglasmaziero.hamburgueriaz.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.douglasmaziero.hamburgueriaz.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -87,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         TextView textValue = findViewById(R.id.textValue);
         textValue.setText("R$ " + finalOrder);
 
-        Intent intent = new Intent(this, MainActivity2.class);
+        Intent intent = new Intent(this, FinalizarPedidoActivity.class);
         intent.putExtra("name", name.getText().toString());
         intent.putExtra("value", finalOrder);
         intent.putExtra("count", countView);
