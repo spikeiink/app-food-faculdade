@@ -3,6 +3,7 @@ package com.douglasmaziero.hamburgueriaz.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -14,17 +15,28 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.douglasmaziero.hamburgueriaz.R;
+import com.douglasmaziero.hamburgueriaz.model.Adicional;
+import com.douglasmaziero.hamburgueriaz.model.Pedido;
 
 public class MainActivity extends AppCompatActivity {
+    Pedido pedido = new Pedido();
+    private TextView textCount;
+    private Button buttonMore;
+    private Button buttonLess;
 
-    public static int countView = 0;
-    public static int valueComplement = 0;
-    public TextView textView;
-    public static int valueBurguer = 0;
+    private Button buttonRequest;
+    private TextView textResume;
+    private TextView textValue;
+    private EditText inputName;
+    private CheckBox checkBacon;
+    private CheckBox checkQueijo;
+    private CheckBox checkOnion;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
@@ -34,67 +46,48 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-    }
 
-    public void addValue(View view)
-    {
-        textView = findViewById(R.id.textCount);
+        inputName = findViewById(R.id.inputName);
+        textResume = findViewById(R.id.textResume);
+        buttonMore = findViewById(R.id.buttonMore);
+        buttonLess = findViewById(R.id.buttonLess);
+        textCount = findViewById(R.id.textCount);
+        checkBacon = findViewById(R.id.checkBacon);
+        checkQueijo = findViewById(R.id.checkQueijo);
+        checkOnion = findViewById(R.id.checkOnion);
+        buttonRequest = findViewById(R.id.buttonRequest);
 
-        countView = Integer.parseInt(textView.getText().toString());
-        countView++;
-        textView.setText(String.valueOf(countView));
+        buttonMore.setOnClickListener(v -> {
+            pedido.adicionarLanche();
+            textCount.setText(String.valueOf(pedido.getQuantidade()));
+        });
 
-        valueBurguer += 20;
-    }
+        buttonLess.setOnClickListener(v -> {
+            pedido.tirarLanche();
+            textCount.setText(String.valueOf(pedido.getQuantidade()));
+        });
 
-    public void subValue(View view){
-        countView--;
+        buttonRequest.setOnClickListener(v -> {
+            pedido.setNomeCliente(inputName.getText().toString());
 
-        if(countView < 0)
-           return;
-
-        textView.setText(String.valueOf(countView));
-
-        valueBurguer -= 20;
-    }
-
-    public void calculateValue(View view) {
-        CheckBox checkBox = (CheckBox) view;
-
-        if (checkBox.isChecked()) {
-            valueComplement += Integer.parseInt(view.getTag().toString());
-
-        } else {
-            valueComplement -= Integer.parseInt(view.getTag().toString());
-
-        }
-    }
-
-    public void sendRequest(View view){
-        EditText name = findViewById(R.id.inputName);
-        int i = 0;
-
-        if(valueComplement != 0){
-            i = countView * valueComplement;
-        }
-
-        int finalOrder = valueBurguer + i;
-
-        if(name.getText().toString().isEmpty()){
-            name.setError("Digite seu nome");
-            return;
-        } else
-            name.setError(null);
-
-        TextView textValue = findViewById(R.id.textValue);
-        textValue.setText("R$ " + finalOrder);
-
-        Intent intent = new Intent(this, FinalizarPedidoActivity.class);
-        intent.putExtra("name", name.getText().toString());
-        intent.putExtra("value", finalOrder);
-        intent.putExtra("count", countView);
-
-        startActivity(intent);
-
+            if (checkBacon.isChecked()) {
+                pedido.adicionarAdicional(new Adicional("Bacon", 2));
+            }
+            if (checkQueijo.isChecked()) {
+                pedido.adicionarAdicional(new Adicional("Queijo", 2));
+            }
+            if (checkOnion.isChecked()) {
+                pedido.adicionarAdicional(new Adicional("Onion Rings", 3));
+            }
+            pedido.finalizarPedido();
+            Intent intent = new Intent(MainActivity.this, FinalizarPedidoActivity.class);
+            intent.putExtra("textNameCliente", pedido.getNomeCliente());
+            intent.putExtra("textBacon", checkBacon.isChecked());
+            intent.putExtra("textQueijo", checkQueijo.isChecked());
+            intent.putExtra("textOnion", checkOnion.isChecked());
+            intent.putExtra("textQuantidade", pedido.getQuantidade());
+            intent.putExtra("textValor", pedido.calculaTotal());
+            startActivity(intent);
+        });
     }
 }

@@ -52,34 +52,31 @@
         android:id="@+id/checkBacon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Bacon (+R$2)"
+        android:layout_marginStart="24dp"
         android:tag="2"
-        android:onClick="calculateValue"
-        app:layout_constraintTop_toBottomOf="@id/inputLayoutName"
+        android:text="Bacon (+R$2)"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="24dp"/>
+        app:layout_constraintTop_toBottomOf="@id/inputLayoutName" />
 
     <CheckBox
         android:id="@+id/checkQueijo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Queijo (+R$2)"
+        android:layout_marginStart="24dp"
         android:tag="2"
-        android:onClick="calculateValue"
-        app:layout_constraintTop_toBottomOf="@id/checkBacon"
+        android:text="Queijo (+R$2)"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="24dp"/>
+        app:layout_constraintTop_toBottomOf="@id/checkBacon" />
 
     <CheckBox
         android:id="@+id/checkOnion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Onion Rings (+R$3)"
+        android:layout_marginStart="24dp"
         android:tag="3"
-        android:onClick="calculateValue"
-        app:layout_constraintTop_toBottomOf="@id/checkQueijo"
+        android:text="Onion Rings (+R$3)"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="24dp"/>
+        app:layout_constraintTop_toBottomOf="@id/checkQueijo" />
 
     <!-- Contador -->
     <Button
@@ -110,12 +107,11 @@
         android:id="@+id/buttonMore"
         android:layout_width="48dp"
         android:layout_height="48dp"
+        android:layout_marginEnd="32dp"
         android:text="+"
-        android:onClick="addValue"
-        app:layout_constraintTop_toTopOf="@id/buttonLess"
         app:layout_constraintBottom_toBottomOf="@id/buttonLess"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginEnd="32dp"/>
+        app:layout_constraintTop_toTopOf="@id/buttonLess" />
 
     <!-- Resumo -->
     <TextView
