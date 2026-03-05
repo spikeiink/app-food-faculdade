@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Banner -->
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="0dp"
@@ -17,7 +16,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- Título -->
     <TextView
         android:id="@+id/textLabel"
         android:layout_width="wrap_content"
@@ -30,7 +28,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- Campo Nome -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/inputLayoutName"
         android:layout_width="0dp"
@@ -41,13 +38,12 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/inputName"
+            android:id="@+id/inputEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nome"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Opções -->
     <CheckBox
         android:id="@+id/checkBacon"
         android:layout_width="wrap_content"
@@ -78,7 +74,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/checkQueijo" />
 
-    <!-- Contador -->
     <Button
         android:id="@+id/buttonLess"
         android:layout_width="48dp"
@@ -113,7 +108,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/buttonLess" />
 
-    <!-- Resumo -->
     <TextView
         android:id="@+id/textResume"
         android:layout_width="wrap_content"
@@ -125,7 +119,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- Valor -->
     <TextView
         android:id="@+id/textValue"
         android:layout_width="wrap_content"
@@ -138,7 +131,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- Botão Final -->
     <Button
         android:id="@+id/buttonRequest"
         android:layout_width="0dp"

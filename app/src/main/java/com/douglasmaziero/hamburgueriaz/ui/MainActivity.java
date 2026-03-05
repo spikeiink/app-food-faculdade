@@ -2,7 +2,6 @@ package com.douglasmaziero.hamburgueriaz.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -47,7 +46,8 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        inputName = findViewById(R.id.inputName);
+        inputName = findViewById(R.id.inputEmail);
+        textValue = findViewById(R.id.textValue);
         textResume = findViewById(R.id.textResume);
         buttonMore = findViewById(R.id.buttonMore);
         buttonLess = findViewById(R.id.buttonLess);
@@ -60,11 +60,13 @@ public class MainActivity extends AppCompatActivity {
         buttonMore.setOnClickListener(v -> {
             pedido.adicionarLanche();
             textCount.setText(String.valueOf(pedido.getQuantidade()));
+            textValue.setText(String.valueOf(pedido.calculaTotal()));
         });
 
         buttonLess.setOnClickListener(v -> {
             pedido.tirarLanche();
             textCount.setText(String.valueOf(pedido.getQuantidade()));
+            textValue.setText(String.valueOf(pedido.calculaTotal()));
         });
 
         buttonRequest.setOnClickListener(v -> {
@@ -78,6 +80,11 @@ public class MainActivity extends AppCompatActivity {
             }
             if (checkOnion.isChecked()) {
                 pedido.adicionarAdicional(new Adicional("Onion Rings", 3));
+            }
+
+            if (pedido.getNomeCliente().isEmpty()) {
+                inputName.setError("Digite seu nome");
+                return;
             }
             pedido.finalizarPedido();
             Intent intent = new Intent(MainActivity.this, FinalizarPedidoActivity.class);
